@@ -1,0 +1,42 @@
+{
+  "numeric_features": [
+    "age",
+    "annual_income",
+    "policy_duration",
+    "previous_claims",
+    "vehicle_age",
+    "health_score",
+    "accident_history",
+    "premium_paid",
+    "claim_to_premium_ratio",
+    "risk_index",
+    "age_health_interaction",
+    "income_per_year_insured"
+  ],
+  "categorical_features": [
+    "gender",
+    "occupation",
+    "policy_type"
+  ],
+  "all_features": [
+    "age",
+    "annual_income",
+    "policy_duration",
+    "previous_claims",
+    "vehicle_age",
+    "health_score",
+    "accident_history",
+    "premium_paid",
+    "claim_to_premium_ratio",
+    "risk_index",
+    "age_health_interaction",
+    "income_per_year_insured",
+    "gender",
+    "occupation",
+    "policy_type"
+  ],
+  "regression_target": "claim_amount",
+  "classification_target": "fraud_flag",
+  "best_reg_model": "XGBoost",
+  "best_clf_model": "XGBoost"
+}
