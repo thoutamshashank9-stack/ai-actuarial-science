@@ -1,3 +1,14 @@
+---
+title: AI Actuarial Science
+emoji: 🏛️
+colorFrom: red
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.35.0
+app_file: app/streamlit_app.py
+pinned: false
+---
+
 # 🏛️ Predictive Modeling in AI Actuarial Science
 
 > **A Complete End-to-End Data Science Portfolio Project**  
