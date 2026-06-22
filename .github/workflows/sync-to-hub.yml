@@ -15,4 +15,4 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push -f https://thoutamshashank9-stack:$HF_TOKEN@huggingface.co/spaces/thoutamshashank9-stack/ai-actuarial-science main
+        run: git push -f https://thoutam776611:$HF_TOKEN@huggingface.co/spaces/thoutam776611/predictive-model-dashboard main
