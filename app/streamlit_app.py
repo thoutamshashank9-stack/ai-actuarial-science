@@ -372,7 +372,7 @@ with st.sidebar:
     health_score     = st.slider("Health Score (0–100)", 10, 100, 75)
     vehicle_age      = st.slider("Vehicle Age (years)", 0, 20, 3) if policy_type == "Auto" else 0
 
-    run_prediction = st.button("🚀 Run AI Analysis", width='stretch')
+    run_prediction = st.button("🚀 Run AI Analysis", use_container_width=True)
 
 # ---------------------------------------------------------------------------
 # PREPARE INPUT
@@ -499,7 +499,7 @@ if "Dashboard" in page:
                 margin=dict(l=10, r=10, t=10, b=40),
                 showlegend=False
             )
-            st.plotly_chart(fig, width='stretch')
+            st.plotly_chart(fig, use_container_width=True)
 
         with col2:
             st.markdown('<div class="section-header">🔍 Fraud by Policy Type</div>', unsafe_allow_html=True)
@@ -518,7 +518,7 @@ if "Dashboard" in page:
                 margin=dict(l=10, r=10, t=10, b=40),
                 coloraxis_showscale=False
             )
-            st.plotly_chart(fig2, width='stretch')
+            st.plotly_chart(fig2, use_container_width=True)
 
         # Charts Row 2
         col3, col4 = st.columns(2)
@@ -538,7 +538,7 @@ if "Dashboard" in page:
                 font={"color": "#e0e0e0"}, height=280,
                 margin=dict(l=10, r=10, t=10, b=40),
             )
-            st.plotly_chart(fig3, width='stretch')
+            st.plotly_chart(fig3, use_container_width=True)
 
         with col4:
             st.markdown('<div class="section-header">🏢 Occupation Risk Profile</div>', unsafe_allow_html=True)
@@ -559,7 +559,7 @@ if "Dashboard" in page:
                 font={"color": "#e0e0e0"}, height=280,
                 margin=dict(l=10, r=10, t=10, b=40),
             )
-            st.plotly_chart(fig4, width='stretch')
+            st.plotly_chart(fig4, use_container_width=True)
     else:
         st.warning("Dataset not found. Please run `python notebooks/01_data_generation.py` first.")
 
@@ -622,19 +622,19 @@ elif "Prediction" in page:
         with g1:
             fig_gauge1 = make_gauge(fraud_prob * 100, "Fraud Probability", risk_color,
                                      max_val=100, suffix="%")
-            st.plotly_chart(fig_gauge1, width='stretch')
+            st.plotly_chart(fig_gauge1, use_container_width=True)
 
         with g2:
             fig_gauge2 = make_gauge(risk_score, "Composite Risk Score", risk_color,
                                      max_val=100)
-            st.plotly_chart(fig_gauge2, width='stretch')
+            st.plotly_chart(fig_gauge2, use_container_width=True)
 
         with g3:
             claim_to_premium = (predicted_claim / (premium_paid + 1)) * 100
             gauge_color = "#ef4444" if claim_to_premium > 300 else "#f59e0b" if claim_to_premium > 150 else "#10b981"
             fig_gauge3 = make_gauge(min(claim_to_premium, 500), "Claim/Premium Ratio",
                                      gauge_color, max_val=500, suffix="%")
-            st.plotly_chart(fig_gauge3, width='stretch')
+            st.plotly_chart(fig_gauge3, use_container_width=True)
 
         # ── Risk Factor Radar ─────────────────────────────────────────────────
         st.markdown("### 🕸️ Risk Factor Radar")
@@ -669,7 +669,7 @@ elif "Prediction" in page:
             margin=dict(l=60, r=60, t=30, b=30),
             font={"color": "#e0e0e0"}
         )
-        st.plotly_chart(fig_radar, width='stretch')
+        st.plotly_chart(fig_radar, use_container_width=True)
 
         # ── Premium Breakdown ─────────────────────────────────────────────────
         st.markdown("### 💵 Premium Recommendation Breakdown")
@@ -698,7 +698,7 @@ elif "Prediction" in page:
                 margin=dict(l=10, r=10, t=10, b=10),
                 font={"color": "#e0e0e0"}
             )
-            st.plotly_chart(fig_pie, width='stretch')
+            st.plotly_chart(fig_pie, use_container_width=True)
 
         with col_p2:
             st.markdown(f"""
@@ -763,7 +763,7 @@ elif "EDA" in page:
             )
             fig.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1d27",
                                height=320, margin=dict(l=10,r=10,t=20,b=40))
-            st.plotly_chart(fig, width='stretch')
+            st.plotly_chart(fig, use_container_width=True)
 
         with c2:
             fig2 = px.box(
@@ -775,7 +775,7 @@ elif "EDA" in page:
             fig2.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1d27",
                                 height=320, margin=dict(l=10,r=10,t=20,b=40),
                                 showlegend=False)
-            st.plotly_chart(fig2, width='stretch')
+            st.plotly_chart(fig2, use_container_width=True)
 
         # Violin
         fig3 = px.violin(
@@ -786,7 +786,7 @@ elif "EDA" in page:
         )
         fig3.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1d27",
                             height=350, margin=dict(l=10,r=10,t=20,b=50))
-        st.plotly_chart(fig3, width='stretch')
+        st.plotly_chart(fig3, use_container_width=True)
 
     with tab2:
         numeric_cols = [
@@ -802,7 +802,7 @@ elif "EDA" in page:
         )
         fig_corr.update_layout(paper_bgcolor="#0f1117", height=500,
                                 margin=dict(l=10,r=10,t=20,b=10))
-        st.plotly_chart(fig_corr, width='stretch')
+        st.plotly_chart(fig_corr, use_container_width=True)
 
     with tab3:
         c1, c2 = st.columns(2)
@@ -815,7 +815,7 @@ elif "EDA" in page:
                                height=350, margin=dict(l=10,r=10,t=20,b=10),
                                coloraxis_showscale=False, showlegend=False,
                                title="Fraud Rate by Occupation")
-            st.plotly_chart(fig, width='stretch')
+            st.plotly_chart(fig, use_container_width=True)
 
         with c2:
             fraud_claim_comp = df_eda.groupby("fraud_flag")["claim_amount"].mean().reset_index()
@@ -827,7 +827,7 @@ elif "EDA" in page:
                            title="Avg Claim: Genuine vs Fraud")
             fig2.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1d27",
                                 height=350, margin=dict(l=10,r=10,t=40,b=10), showlegend=False)
-            st.plotly_chart(fig2, width='stretch')
+            st.plotly_chart(fig2, use_container_width=True)
 
         # Scatter
         sample = df_eda.sample(min(3000, len(df_eda)), random_state=42)
@@ -842,7 +842,7 @@ elif "EDA" in page:
         )
         fig3.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1d27",
                             height=350, margin=dict(l=10,r=10,t=40,b=10))
-        st.plotly_chart(fig3, width='stretch')
+        st.plotly_chart(fig3, use_container_width=True)
 
     with tab4:
         col_a, col_b = st.columns(2)
@@ -862,7 +862,7 @@ elif "EDA" in page:
                     "Avg_Claim":"Avg Claim ($)","Avg_Premium":"Avg Premium ($)",
                     "Fraud_Rate":"Fraud Rate (%)"
                 }),
-                width='stretch', hide_index=True
+                use_container_width=True, hide_index=True
             )
 
         with col_b:
@@ -875,7 +875,7 @@ elif "EDA" in page:
             )
             fig.update_layout(paper_bgcolor="#0f1117", height=380,
                                margin=dict(l=0,r=0,t=10,b=0))
-            st.plotly_chart(fig, width='stretch')
+            st.plotly_chart(fig, use_container_width=True)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -903,7 +903,7 @@ elif "Performance" in page:
             "Best For":["Interpretability","Balanced Performance","Production Accuracy"]
         }
         reg_df = pd.DataFrame(reg_data)
-        st.dataframe(reg_df, width='stretch', hide_index=True)
+        st.dataframe(reg_df, use_container_width=True, hide_index=True)
 
         col1, col2 = st.columns(2)
         with col1:
@@ -920,7 +920,7 @@ elif "Performance" in page:
                 yaxis=dict(range=[0,1.05]),
                 margin=dict(l=20,r=20,t=40,b=20)
             )
-            st.plotly_chart(fig_r2, width='stretch')
+            st.plotly_chart(fig_r2, use_container_width=True)
 
         with col2:
             fig_err = go.Figure()
@@ -938,7 +938,7 @@ elif "Performance" in page:
                 font={"color":"#e0e0e0"}, height=320,
                 margin=dict(l=20,r=20,t=40,b=20)
             )
-            st.plotly_chart(fig_err, width='stretch')
+            st.plotly_chart(fig_err, use_container_width=True)
 
     with tab2:
         st.markdown("### 📋 Classification Model Comparison")
@@ -952,7 +952,7 @@ elif "Performance" in page:
             "ROC-AUC":   [0.881, 0.974, 0.983],
         }
         clf_df = pd.DataFrame(clf_data)
-        st.dataframe(clf_df, width='stretch', hide_index=True)
+        st.dataframe(clf_df, use_container_width=True, hide_index=True)
 
         fig_clf = go.Figure()
         metrics_clf = ["Accuracy", "Precision", "Recall", "F1 Score", "ROC-AUC"]
@@ -977,7 +977,7 @@ elif "Performance" in page:
             legend=dict(font=dict(color="#94a3b8",size=11)),
             margin=dict(l=60,r=60,t=20,b=20), font={"color":"#e0e0e0"}
         )
-        st.plotly_chart(fig_clf, width='stretch')
+        st.plotly_chart(fig_clf, use_container_width=True)
 
         # Feature Importance table
         st.markdown("### 🎯 Top Predictive Features")
@@ -1004,7 +1004,7 @@ elif "Performance" in page:
                 margin=dict(l=10,r=20,t=40,b=10),
                 yaxis=dict(autorange="reversed")
             )
-            col_st.plotly_chart(fig_fi, width='stretch')
+            col_st.plotly_chart(fig_fi, use_container_width=True)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1034,7 +1034,7 @@ elif "Insights" in page:
                 "Senior actuary + SIU review"
             ]
         }
-        st.dataframe(pd.DataFrame(framework_data), width='stretch', hide_index=True)
+        st.dataframe(pd.DataFrame(framework_data), use_container_width=True, hide_index=True)
 
     with col2:
         st.markdown("#### 🚨 Fraud Trigger Indicators")
@@ -1057,7 +1057,7 @@ elif "Insights" in page:
                 "Income verification"
             ]
         }
-        st.dataframe(pd.DataFrame(trigger_data), width='stretch', hide_index=True)
+        st.dataframe(pd.DataFrame(trigger_data), use_container_width=True, hide_index=True)
 
     if df_ins is not None:
         st.markdown("---")
@@ -1080,7 +1080,7 @@ elif "Insights" in page:
             fig.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1d27",
                                font={"color":"#e0e0e0"}, height=320,
                                margin=dict(l=20,r=20,t=40,b=20))
-            st.plotly_chart(fig, width='stretch')
+            st.plotly_chart(fig, use_container_width=True)
 
         with col_b:
             df_ins["income_bracket"] = pd.cut(
@@ -1102,7 +1102,7 @@ elif "Insights" in page:
             fig2.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1d27",
                                 font={"color":"#e0e0e0"}, height=320,
                                 margin=dict(l=20,r=20,t=40,b=20))
-            st.plotly_chart(fig2, width='stretch')
+            st.plotly_chart(fig2, use_container_width=True)
 
     # Key recommendations
     st.markdown("---")
