@@ -248,7 +248,7 @@ def compute_risk_score(age, previous_claims, accident_history, health_score,
         max(0, (5 - policy_duration) / 5) * 10 +
         fraud_prob * 5
     )
-    return round(min(score * 100, 100), 1)
+    return round(min(score, 100), 1)
 
 
 def get_risk_label(score):
@@ -404,7 +404,7 @@ if models_available and (run_prediction or st.session_state.get("ran_once", Fals
 
         # Claim prediction
         if "claim_model" in models_loaded:
-            predicted_claim = float(models_loaded["claim_model"].predict(input_df)[0])
+            predicted_claim = max(0.0, float(models_loaded["claim_model"].predict(input_df)[0]))
         else:
             predicted_claim = premium_paid * 3.5   # fallback
 
